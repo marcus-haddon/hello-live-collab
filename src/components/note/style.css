@@ -1,0 +1,20 @@
+.note {
+  width: 300px;
+  border: 2px solid black;
+}
+
+.note > .inner {
+  margin: 8px;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.body {
+  box-sizing: border-box;
+  border: 1px dotted grey;
+  padding: 4px;
+  margin: 8px 0;
+}

@@ -24,12 +24,31 @@ export type NotesAction = {
 };
 
 const initialState: NotesState = {
-  notes: [],
-  users: []
+  notes: [
+    {
+      id: "cool-id",
+      body: "hello world",
+      authorID: "test_user",
+      synced: false
+    }
+  ],
+  users: [
+    {
+      id: "test_user",
+      name: "Test User"
+    }
+  ]
 }
 
 const rootReducer: Reducer<NotesState, NotesAction> = (state = initialState, action) => {
-  console.log("TODO: impl reducer logic");
+  switch (action.type) {
+    case "notes/delete": {
+      return {
+        ...state,
+        notes: state.notes.filter(n => n.id !== action.payload)
+      }
+    }
+  }
   return state;
 }
 

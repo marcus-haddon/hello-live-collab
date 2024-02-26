@@ -10,10 +10,18 @@ export const NotesRoute: FunctionComponent = () => {
   const users = useNotesSelector(state => state.users);
   const dispatch = useNotesDispatch();
 
+  const deleteNote = (id: string) => {
+    dispatch({
+      type: "notes/delete",
+      payload: id
+    })
+  }
+
   return (
       <Notes
+        notes={notes}
         onCreateNote={todo("create note")}
-        onDeleteNote={todo("delete note")}
+        onDeleteNote={deleteNote}
         onEditNote={todo("edit note")}
       />
   );
