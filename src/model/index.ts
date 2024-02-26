@@ -9,3 +9,5 @@ export type Note = {
   body: string;
   synced: boolean;
 };
+
+

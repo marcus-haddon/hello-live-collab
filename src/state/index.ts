@@ -1,4 +1,4 @@
-import { Reducer, combineReducers, configureStore } from "@reduxjs/toolkit";
+import { Reducer, ThunkDispatch, combineReducers, configureStore } from "@reduxjs/toolkit";
 import { User, Note } from "../model";
 
 export type NotesState = {
@@ -32,3 +32,11 @@ const rootReducer: Reducer<NotesState, NotesAction> = (state = initialState, act
   console.log("TODO: impl reducer logic");
   return state;
 }
+
+
+export const store = configureStore({
+  reducer: rootReducer,
+});
+
+export type NotesStore = ReturnType<typeof store.getState>;
+export type NotesDispatch = ThunkDispatch<NotesState, any, NotesAction>;
