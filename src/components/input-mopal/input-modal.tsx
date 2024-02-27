@@ -6,14 +6,16 @@ interface Props {
   prompt: string;
   onSubmit: (input: string) => void;
   onCancel: () => void;
+  value?: string;
 }
 
 export const InputModal: FunctionComponent<Props> = ({
   prompt,
   onSubmit,
-  onCancel
+  onCancel,
+  value
 }) => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(value || "");
 
   return (
     <div className="container">
@@ -29,6 +31,7 @@ export const InputModal: FunctionComponent<Props> = ({
           suppressContentEditableWarning={true}
           contentEditable={true}
           onChange={e => setInputValue(e.target.value)}
+          value={inputValue}
         />
         <button
           className="submit"

@@ -10,6 +10,7 @@ export interface Props {
   onDelete: () => void;
   dragging: boolean;
   onMove: (to: number) => void;
+  onEdit: () => void;
   position: number;
 }
 
@@ -19,6 +20,7 @@ const NoteComponent: FunctionComponent<Props> = ({
   dragging,
   onMove,
   position,
+  onEdit
 }) => {
   const noteCount = useNotesSelector(state => state.notes.length);
 
@@ -50,6 +52,11 @@ const NoteComponent: FunctionComponent<Props> = ({
                 >{n}</option>
               ))}
             </select>
+            <button
+              onClick={onEdit}
+            >
+              edit
+            </button>
             <button
               onClick={onDelete}
             >

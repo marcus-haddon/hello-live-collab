@@ -77,11 +77,24 @@ const rootReducer: Reducer<NotesState, NotesAction> = (state = initialState, act
       };
     }
     case "notes/reorder": {
-      alert("TODO: SWAP NOTES");
+      const { origin, destination } = action.payload;
+      if (origin === destination) return state;
+      if (destination < 0 || destination > state.notes.length) {
+        return {
+          ...state,
+          logs: [...state.logs, `Warning - invalid destination idx: ${destination}`]
+        };
+      }
+
+      const toMove = state.notes.find((_, idx) => idx === origin);
+      let moved = state.notes.filter((_, idx) => idx !== origin);
+      moved.splice(destination, 0, toMove!);
+
       return {
         ...state,
-        notes: state.notes
-      }
+        notes: moved,
+        logs: [...state.logs, `Moved element ${origin} to ${destination}`]
+      };
     }
     case "notes/updateBody": {
       const { noteID, newBody } = action.payload;

@@ -48,6 +48,16 @@ export const NotesRoute: FunctionComponent = () => {
     })
   };
 
+  const editNote = (noteID: string, newBody: string) => {
+    dispatch({
+      type: "notes/updateBody",
+      payload: {
+        noteID,
+        newBody
+      }
+    });
+  };
+
   if (!userID) {
     return (
       <InputModal
@@ -63,7 +73,7 @@ export const NotesRoute: FunctionComponent = () => {
         notes={notes}
         onCreateNote={createNote}
         onDeleteNote={deleteNote}
-        onEditNote={todo("edit note")}
+        onEditNote={editNote}
         onMoveNote={moveNote}
       />
   );

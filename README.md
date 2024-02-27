@@ -23,3 +23,7 @@
 
 ## Learnings/Gotchas
 1. Use ThunkDispatch to type your AppDispatch (for use with hooks) to get type safefy in dispatch functions (https://stackoverflow.com/questions/59800913/type-safe-usedispatch-with-redux-thunk)
+
+
+## Stretch goals
+- [ ] use https://react-dnd.github.io/react-dnd to make notes draggable
