@@ -10,4 +10,4 @@ export type Note = {
   synced: boolean;
 };
 
-
+export type PendingNote = Omit<Note, "id" | "synced">;

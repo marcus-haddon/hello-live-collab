@@ -1,0 +1,62 @@
+.container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.backdrop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.input-modal {
+  border: 1px solid black;
+  background-color: white;
+  z-index: 2;
+  width: 80vw;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.text-input {
+  border: 1px dotted grey;
+  background-color: white;
+  color: black;
+  resize: none;
+  width: auto;
+  height: 300px;
+  margin-bottom: 8px;
+}
+
+.top-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cancel {
+  height: 40px;
+  background-color: red;
+}
+
+.submit:disabled {
+  background-color: grey;
+}

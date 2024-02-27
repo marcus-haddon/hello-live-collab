@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { Note } from "../../model";
 
-import "./style.css";
+import "./note.css";
 
 export interface Props {
   note: Note;

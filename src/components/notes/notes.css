@@ -1,0 +1,33 @@
+.notes {
+  min-width: 100vw;
+  min-height: 100vh;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  place-items: center start;
+}
+
+.bottom {
+  width: 100vw;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  justify-content: center;
+  height: 48px;
+  position: sticky;
+  bottom: 0;
+  box-sizing: border-box;
+  border: 1px solid green;
+}
+
+.new-note {
+  background-color: white;
+  color: black;
+  width: 100px;
+  font-weight: 900;
+}
+
+.bottom-spacer {
+  height: 20px;
+}
