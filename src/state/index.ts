@@ -77,8 +77,11 @@ const rootReducer: Reducer<NotesState, NotesAction> = (state = initialState, act
       };
     }
     case "notes/reorder": {
-      alert("TODO: reorder notes")
-      return state;
+      alert("TODO: SWAP NOTES");
+      return {
+        ...state,
+        notes: state.notes
+      }
     }
     case "notes/updateBody": {
       const { noteID, newBody } = action.payload;

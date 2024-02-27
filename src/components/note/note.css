@@ -19,3 +19,12 @@
   padding: 4px;
   margin: 8px 0;
 }
+
+/* .note.dragging {
+  border: 2px dotted grey;
+  background-color: lightgray;
+} */
+
+.drag-button {
+  cursor: grab;
+}

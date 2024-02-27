@@ -13,6 +13,9 @@ export const NotesRoute: FunctionComponent = () => {
   const userID = useNotesSelector(state => state.userID);
   const dispatch = useNotesDispatch();
 
+  
+
+
   const setUserID = useCallback((userID: string) => {
     dispatch({
       type: "user/setUserID",
@@ -32,7 +35,18 @@ export const NotesRoute: FunctionComponent = () => {
       type: "notes/create",
       payload: pending
     })
-  }
+  };
+
+  const moveNote = (noteID: string, origin: number, destination: number) => {
+    dispatch({
+      type: "notes/reorder",
+      payload: {
+        noteID,
+        origin,
+        destination
+      }
+    })
+  };
 
   if (!userID) {
     return (
@@ -50,6 +64,7 @@ export const NotesRoute: FunctionComponent = () => {
         onCreateNote={createNote}
         onDeleteNote={deleteNote}
         onEditNote={todo("edit note")}
+        onMoveNote={moveNote}
       />
   );
 };
