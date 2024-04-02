@@ -17,12 +17,21 @@
 	- [ ] stores username
 	- [ ] stores cards for room?
 
-### Milestone 2: multiuser app
-- [ ] 
+### Milestone 2: Use trimerge
+- [ ] make trimerge single source of truth
+- [ ] create patches/commits inside of reducer
+- [ ] persist locally
+- [ ] reconstruct latest state on load
+
+### Milestone 3: multiuser app
+- [ ] subscribe to pubnub for room on load
+- [ ] broadcast commits to pub nub
+- [ ] subscribe to commits from pub nub, persist locally, update local state using trimerge
 
 
 ## Learnings/Gotchas
 1. Use ThunkDispatch to type your AppDispatch (for use with hooks) to get type safefy in dispatch functions (https://stackoverflow.com/questions/59800913/type-safe-usedispatch-with-redux-thunk)
+2. Sticky footer must be *sibling* not *child* of element with min-height: 100vh;
 
 
 ## Stretch goals

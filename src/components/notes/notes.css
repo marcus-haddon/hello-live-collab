@@ -18,7 +18,6 @@
   position: sticky;
   bottom: 0;
   box-sizing: border-box;
-  border: 1px solid green;
 }
 
 .new-note {
@@ -26,8 +25,4 @@
   color: black;
   width: 100px;
   font-weight: 900;
-}
-
-.bottom-spacer {
-  height: 20px;
 }

@@ -7,8 +7,6 @@ import { store } from './state';
 
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <Provider store={store}>
       <NotesRoute />

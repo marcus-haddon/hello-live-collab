@@ -1,5 +1,6 @@
 import { Reducer, ThunkDispatch, combineReducers, configureStore } from "@reduxjs/toolkit";
 import { User, Note, PendingNote } from "../model";
+import { getClient } from "../sync/trimerge";
 
 export type NotesState = {
   notes: Note[];
@@ -33,7 +34,7 @@ export type NotesAction = {
 };
 
 const initialState: NotesState = {
-  notes: [...Array(20).keys()].map(n => ({
+  notes: [...Array(0).keys()].map(n => ({
     id: n.toString(),
     body: `hello world x ${n}`,
     authorID: "test_user",
@@ -50,7 +51,6 @@ const initialState: NotesState = {
 }
 
 const rootReducer: Reducer<NotesState, NotesAction> = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case "notes/delete": {
       return {
@@ -118,8 +118,17 @@ const rootReducer: Reducer<NotesState, NotesAction> = (state = initialState, act
   }
 }
 
+const roomID = window.location.pathname;
+
+const sync = getClient(roomID);
+console.log("Loaded sync client", { syncState: sync.doc });
+
 export const store = configureStore({
   reducer: rootReducer,
+});
+
+store.subscribe(() => {
+  sync.updateDoc(store.getState().notes, {}, {});
 });
 
 export type NotesStore = ReturnType<typeof store.getState>;

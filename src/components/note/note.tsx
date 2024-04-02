@@ -48,7 +48,7 @@ const NoteComponent: FunctionComponent<Props> = ({
               {[...Array(noteCount).keys()].map(n => (
                 <option
                   value={n}
-                  
+                  key={n}
                 >{n}</option>
               ))}
             </select>

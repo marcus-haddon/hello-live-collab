@@ -31,26 +31,48 @@ export const Notes: FunctionComponent<Props> = ({
   const [dragging, setDragging] = useState(false);
 
   return (
-    <div className="notes">
-      {notes.map((note, idx) => (
-        <>
-          <NoteComponent
-            key={note.id}
-            note={note}
-            onDelete={() => onDeleteNote(note.id)}
-            dragging={originIDX === idx}
-            onMove={(destination: number) => onMoveNote(note.id, idx, destination)}
-            position={idx}
-            onEdit={() => {
-              setInputting("NOTE_EDIT");
-              setEditingNote(note);
-            }}
-          />
+    <>
+      <div className="notes">
+        {notes.length > 0 ? notes.map((note, idx) => (
+            <NoteComponent
+              key={note.id}
+              note={note}
+              onDelete={() => onDeleteNote(note.id)}
+              dragging={originIDX === idx}
+              onMove={(destination: number) => onMoveNote(note.id, idx, destination)}
+              position={idx}
+              onEdit={() => {
+                setInputting("NOTE_EDIT");
+                setEditingNote(note);
+              }}
+            />
           
-          {/* {destinationIDX === idx && <div className="destination" key={`divider-${idx}`}>to here</div>} */}
-        </>
+        )) : <h3 className="no-notes">No notes. Write one!</h3>}
         
-      ))}
+        {!!inputting && (
+          <InputModal
+            prompt={inputting === "NEW_NOTE" ? "Create new note" : "Edit note"}
+            onSubmit={(input) => {
+              setInputting(null);
+              switch (inputting) {
+                case "NEW_NOTE":
+                  onCreateNote({
+                    authorID: userID!,
+                    body: input,
+                  });
+                  break;
+                case "NOTE_EDIT":
+                  onEditNote(editingNote!.id, input)
+              }
+              setInputting(null);
+              setEditingNote(null);
+              
+            }}
+            value={inputting === "NOTE_EDIT" ? editingNote!.body : ""}
+            onCancel={() => setInputting(null)}
+          />
+        )}
+      </div>
       <div className="bottom">
         <button
           className="new-note"
@@ -59,30 +81,7 @@ export const Notes: FunctionComponent<Props> = ({
           +
         </button>
       </div>
-      <div className="bottom-spacer"></div>
-      {!!inputting && (
-        <InputModal
-          prompt={inputting === "NEW_NOTE" ? "Create new note" : "Edit note"}
-          onSubmit={(input) => {
-            setInputting(null);
-            switch (inputting) {
-              case "NEW_NOTE":
-                onCreateNote({
-                  authorID: userID!,
-                  body: input,
-                });
-                break;
-              case "NOTE_EDIT":
-                onEditNote(editingNote!.id, input)
-            }
-            setInputting(null);
-            setEditingNote(null);
-            
-          }}
-          value={inputting === "NOTE_EDIT" ? editingNote!.body : ""}
-          onCancel={() => setInputting(null)}
-        />
-      )}
-    </div>
+    </>
+    
   );
 };
